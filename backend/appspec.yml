@@ -1,0 +1,31 @@
+version: 0.0
+os: linux
+files:
+ - source: .
+   destination: /home/ubuntu/temp
+
+file_exists_behavior: OVERWRITE
+permissions:
+- object: /home/ubuntu/temp
+owner: ubuntu
+group: ubuntu
+type:
+- directory
+- file
+hooks:
+# ApplicationStop:
+# DownloadBundle:
+#  BeforeInstall:
+#    - location: scripts/before_install.sh
+#      timeout: 300
+#      runas: root
+# Install:
+  AfterInstall:
+    - location: deploy_scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+   - location: deploy_scripts/start_server.sh
+     timeout: 300
+     runas: ubuntu

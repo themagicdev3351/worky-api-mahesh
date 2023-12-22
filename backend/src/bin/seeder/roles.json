@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Admin",
+        "type": 2,
+        "permissions": [
+            {
+                "module": "auth",
+                "permission": true,
+                "create": true,
+                "edit": true,
+                "delete": true,
+                "list": true
+            },
+            {
+                "module": "users",
+                "permission": true,
+                "create": true,
+                "edit": true,
+                "delete": true,
+                "list": true
+            }
+        ]
+    },
+    {
+        "name": "User",
+        "type": 1,
+        "permissions": [
+            {
+                "module": "auth",
+                "create": true,
+                "edit": true,
+                "delete": true,
+                "list": true
+            },
+            {
+                "module": "users",
+                "create": true,
+                "edit": true,
+                "delete": true,
+                "list": false
+            }
+        ]
+    }
+]
