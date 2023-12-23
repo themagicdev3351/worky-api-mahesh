@@ -14,7 +14,7 @@ if (NODE_ENV === 'local') {
     frontendUrl = 'localhost:3000/';
     apiURL = 'http://localhost:3001/';
     googleRedirectUrl = 'http://localhost:3001';
-    adminFrontendUrl = 'http://localhost:3001';
+    adminFrontendUrl = 'http://localhost:3000';
 }
 
 if (NODE_ENV === 'development') {
@@ -45,11 +45,11 @@ module.exports = {
     },
 
     SMTPConfig: {
-        EMAIL: 'perla@ninjatechnolabs.com',
-        PASSWORD: 'perla@ninjatech', // Here Password is master key from smtp
+        EMAIL: 'swaminarayan1607@gmail.com',
+        PASSWORD: 'sw@min@r@y@n@1607', // Here Password is master key from smtp
         HOST: 'smtp.gmail.com',
         PORT: 587,
-        FROM_EMAIL: 'perla@ninjatechnolabs.com',
+        FROM_EMAIL: 'swaminarayan1607@gmail.com',
     },
 
     USER: { TYPE: { ADMIN: 3, TEACHER: 2, STUDENT: 1, GOOGLE: 4 } },
