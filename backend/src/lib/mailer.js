@@ -18,6 +18,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (mailOptions) => {
     transporter.verify(async (error) => { if (error) throw staticResponseMessageObject.somethingWentToWrong });
     const emailResponse = await transporter.sendMail(mailOptions);
+    console.log(emailResponse, 'emailResponse')
     if (!emailResponse.messageId) return { error: MESSAGES.SOMETHING_WENT_WRONG };
     return { result: 'Email sent successfully' };
 }
@@ -59,7 +60,10 @@ module.exports = {
             html
         }
 
+        console.log(mailOptions)
+
         const sendEmailResponse = await sendEmail(mailOptions);
+        console.log(sendEmailResponse)
         if (!sendEmailResponse) throw staticResponseMessageObject.emailNotSent;
 
         return sendEmailResponse;

@@ -22,6 +22,6 @@ router.post('/forgot-password', (req, res, next) => authController.forgotPasswor
 
 router.post('/reset-password', isAuth, (req, res, next) => authController.resetPassword(req, res, next));
 
-router.post('/change-password', isAuth,  (req, res, next) => authController.changePassword(req, res, next));
+router.post('/change-password', isAuth, (req, res, next) => authController.changePassword(req, res, next));
 
 module.exports = router;

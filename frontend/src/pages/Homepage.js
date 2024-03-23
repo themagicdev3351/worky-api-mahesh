@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Grid, Box, Button } from '@mui/material';
+import { Container, Grid, Box } from '@mui/material';
 import styled from 'styled-components';
 import Students from "../assets/students.svg";
 import { LightPurpleButton } from '../components/buttonStyles';
@@ -27,7 +27,7 @@ const Homepage = () => {
                             Access records, view marks, and communicate effortlessly.
                         </StyledText>
                         <StyledBox>
-                            <StyledLink to="/Adminlogin">
+                            <StyledLink to="/login">
                                 <LightPurpleButton variant="contained" fullWidth>
                                     Login
                                 </LightPurpleButton>
@@ -41,7 +41,7 @@ const Homepage = () => {
                             </StyledLink> */}
                             <StyledText>
                                 Don't have an account?{' '}
-                                <Link to="/Adminregister" style={{ color: "#550080" }}>
+                                <Link to="/register" style={{ color: "#550080" }}>
                                     Sign up
                                 </Link>
                             </StyledText>

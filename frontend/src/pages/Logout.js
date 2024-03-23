@@ -5,28 +5,28 @@ import { authLogout } from '../redux/userRelated/userSlice';
 import styled from 'styled-components';
 
 const Logout = () => {
-    const currentUser = useSelector(state => state.user.currentUser);
+  const currentUser = useSelector(state => state.user.currentUser);
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const handleLogout = () => {
-        dispatch(authLogout());
-        navigate('/');
-    };
+  const handleLogout = () => {
+    dispatch(authLogout());
+    navigate('/');
+  };
 
-    const handleCancel = () => {
-        navigate(-1);
-    };
+  const handleCancel = () => {
+    navigate(-1);
+  };
 
-    return (
-        <LogoutContainer>
-            <h1>{currentUser.name}</h1>
-            <LogoutMessage>Are you sure you want to log out?</LogoutMessage>
-            <LogoutButtonLogout onClick={handleLogout}>Log Out</LogoutButtonLogout>
-            <LogoutButtonCancel onClick={handleCancel}>Cancel</LogoutButtonCancel>
-        </LogoutContainer>
-    );
+  return (
+    <LogoutContainer>
+      <h1>{currentUser.name}</h1>
+      <LogoutMessage>Are you sure you want to log out?</LogoutMessage>
+      <LogoutButtonLogout onClick={handleLogout}>Log Out</LogoutButtonLogout>
+      <LogoutButtonCancel onClick={handleCancel}>Cancel</LogoutButtonCancel>
+    </LogoutContainer>
+  );
 };
 
 export default Logout;

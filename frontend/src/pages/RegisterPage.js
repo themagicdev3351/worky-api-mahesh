@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import bgpic from "../../assets/designlogin.jpg"
-import { LightPurpleButton } from '../../components/buttonStyles';
-import { registerUser } from '../../redux/userRelated/userHandle';
+import bgpic from "../assets/designlogin.jpg"
+import { LightPurpleButton } from '../components/buttonStyles';
+import { registerUser } from '../redux/userRelated/userHandle';
 import styled from 'styled-components';
-import Popup from '../../components/Popup';
+import Popup from '../components/Popup';
 
 const defaultTheme = createTheme();
 
-const AdminRegisterPage = () => {
+const RegisterPage = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -59,7 +59,7 @@ const AdminRegisterPage = () => {
 
     useEffect(() => {
         if (status === 'success' || (currentUser !== null && currentRole === 'Admin')) {
-            navigate('/Admin/dashboard');
+            navigate('/dashboard');
         }
         else if (status === 'failed') {
             setMessage(response)
@@ -86,7 +86,7 @@ const AdminRegisterPage = () => {
                         }}
                     >
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
-                            Admin Register
+                            Register
                         </Typography>
                         <Typography variant="h7">
                             Create your own school by registering as an admin.
@@ -100,7 +100,7 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="Enter your name"
+                                label="Enter your firstname"
                                 name="firstName"
                                 autoComplete="name"
                                 autoFocus
@@ -113,10 +113,9 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="lastName"
-                                label="Enter your name"
+                                label="Enter your lastname"
                                 name="lastName"
                                 autoComplete="name"
-                                autoFocus
                                 error={adminNameError}
                                 helperText={adminNameError && 'Name is required'}
                                 onChange={handleInputChange}
@@ -178,7 +177,7 @@ const AdminRegisterPage = () => {
                                     Already have an account?
                                 </Grid>
                                 <Grid item sx={{ ml: 2 }}>
-                                    <StyledLink to="/Adminlogin">
+                                    <StyledLink to="/login">
                                         Log in
                                     </StyledLink>
                                 </Grid>
@@ -206,7 +205,7 @@ const AdminRegisterPage = () => {
     );
 }
 
-export default AdminRegisterPage
+export default RegisterPage
 
 const StyledLink = styled(Link)`
   margin-top: 9px;
