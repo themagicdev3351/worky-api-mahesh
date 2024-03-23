@@ -26,9 +26,9 @@ function createModelName() {
      * require all model file from models folder, It returns array of string with file extension (like 'example.js').
      */
     const modelNameRegex = /^([a-z][A-Za-z]*)Model$/;
-
+    
     for (const modelNameKey in models) {
-        const exist = setToStatic.includes(modelNameKey.replace('Model', ''));
+        const exist = setToStatic.includes(modelNameKey.replace('Model', '')); 
         if (!modelNameRegex.test(modelNameKey) || !exist) {
             delete models[modelNameKey];
             log(`Error: You need to check --> '${modelNameKey}' <-- which is static set.( 'filename + Model' like as 'userModel' )`);

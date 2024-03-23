@@ -9,6 +9,7 @@ let frontendUrl;
 let apiURL;
 let googleRedirectUrl;
 let adminFrontendUrl;
+
 if (NODE_ENV === 'local') {
     ssl = 'http://';
     frontendUrl = 'localhost:3000/';
@@ -45,11 +46,11 @@ module.exports = {
     },
 
     SMTPConfig: {
-        EMAIL: 'swaminarayan1607@gmail.com',
-        PASSWORD: 'sw@min@r@y@n@1607', // Here Password is master key from smtp
+        EMAIL: 'themagicdev3351@gmail.com',
+        PASSWORD: 'fnji hvru uxoa xxia', // Here Password is master key from smtp
         HOST: 'smtp.gmail.com',
         PORT: 587,
-        FROM_EMAIL: 'swaminarayan1607@gmail.com',
+        FROM_EMAIL: 'themagicdev3351@gmail.com',
     },
 
     USER: { TYPE: { ADMIN: 3, TEACHER: 2, STUDENT: 1, GOOGLE: 4 } },

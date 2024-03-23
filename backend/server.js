@@ -18,7 +18,7 @@ server.on("listening", async () => {
   // await seedAllConfig();
   await initializeApp();
 
-  log(`We're flying on ${env.toUpperCase()}_${port}`);
+  log(`We're flying on ${env.toUpperCase()}+${port}`);
 });
 
 

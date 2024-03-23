@@ -7,7 +7,6 @@ import {
     authError,
     authLogout,
     doneSuccess,
-    getDeleteSuccess,
     getRequest,
     getFailed,
     getError,
@@ -17,7 +16,7 @@ export const loginUser = (fields, role) => async (dispatch) => {
     dispatch(authRequest());
 
     try {
-        const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/${role}Login`, fields, {
+        const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/login`, fields, {
             headers: { 'Content-Type': 'application/json' },
         });
         if (result.data.role) {
@@ -37,6 +36,25 @@ export const registerUser = (fields) => async (dispatch) => {
     try {
         const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/register`, fields, {
             headers: { 'Content-Type': 'application/json' },
+        });
+        if (result.data) {
+            dispatch(authSuccess(result.data));
+        }
+        else {
+            dispatch(authFailed(result.data.message));
+        }
+    } catch (error) {
+        dispatch(authError(error));
+    }
+};
+
+
+export const verifyEmailUser = (token) => async (dispatch) => {
+    dispatch(authRequest());
+
+    try {
+        const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/verify-email`, { token }, {
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
         });
         if (result.data) {
             dispatch(authSuccess(result.data));

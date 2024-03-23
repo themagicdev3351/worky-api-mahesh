@@ -29,7 +29,9 @@ const login = async (params) => {
         const updatedUser = await update({ _id: user._id }, { verification })
         if (!updatedUser) throw { error: (await responseMessageObject('User', 'Updated')).error }
 
-        const payload = { verification, _id: updatedUser._id, email: updatedUser.email, type: updatedUser.type }
+        const fullName = updatedUser.firstName + " " + updatedUser.lastName
+
+        const payload = { verification, _id: updatedUser._id, email: updatedUser.email, type: updatedUser.type, fullName: fullName }
         return payload
     } catch (error) {
         return error
@@ -114,7 +116,7 @@ module.exports = {
             const params = req.body
 
             const fieldsToRequired = ['email', 'firstName', 'lastName', 'password']
-            // await checkRequiredParams(fieldsToRequired, params)
+            await checkRequiredParams(fieldsToRequired, params)
 
             const isValidEmail = await emailRegex(params.email)
             if (!isValidEmail) { return next(Boom.notFound((await responseMessageObject('email', null)).invalidProp)) }
@@ -127,7 +129,7 @@ module.exports = {
             if (!newUser) throw staticResponseMessageObject.userRegisterFailed
 
             const token = await createToken(newUser)
-            const link = `${adminFrontendUrl}/verify-email/${token.token}`
+            const link = `${adminFrontendUrl}/verify-email?${token.token}`
             const fullName = newUser.firstName + " " + newUser.lastName
             console.log('lllll')
 

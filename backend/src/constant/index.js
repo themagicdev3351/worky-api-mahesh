@@ -20,7 +20,7 @@ exports.setGlobal = () => {
     /**
      * Set all 'collection' dynamically with 'filename' as a collection name with 'Model' like user to userModel.
      */
-     const models = require('../models/indexModel');
+    const models = require('../models/indexModel');
     if (!Array.isArray(models)) {
         for (const [modelName, modelFile] of Object.entries(models)) {
             global[modelName] = modelFile;
@@ -28,7 +28,7 @@ exports.setGlobal = () => {
     } else {
         console.log(Date.now(), "Error while set models to Global Object. Check models/index* file.");
     }
-    
+
 
     return "done";
 }
