@@ -1,56 +1,41 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-// import { useSelector } from 'react-redux';
-import Homepage from './pages/Homepage';
-// import AdminDashboard from './pages/admin/AdminDashboard';
-// import StudentDashboard from './pages/student/StudentDashboard';
-// import TeacherDashboard from './pages/teacher/TeacherDashboard';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ChooseUser from './pages/ChooseUser';
-import VerifyPage from './pages/VerifyPage';
-// require('dotenv').config()
+import { useState } from 'react'
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
+
+// pages
+import HomeScreen from './pages/Home/HomeScreen'
+import Register from './pages/Register/Register'
+import Login from './pages/Login/Login'
+import Profile from './pages/Profile/Profile';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+
+const PrivateWrapper = ({ auth }) => {
+  return auth ? <Outlet /> : <Navigate to="/" />;
+};
 
 const App = () => {
-  // const { currentRole } = useSelector(state => state.user);
+  const auth = useState(localStorage.getItem('E_COMMERCE_TOKEN'))
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/choose" element={<ChooseUser visitor="normal" />} />
-        {/* <Route path="/chooseasguest" element={<ChooseUser visitor="guest" />} /> */}
+    <>
+      <main className="app">
+        <Header />
+        <div className='body-main-part'>
+          <Routes>
 
-        <Route path="/login" element={<LoginPage role="Admin" />} />
-        {/* <Route path="/Studentlogin" element={<LoginPage role="Student" />} />
-        <Route path="/Teacherlogin" element={<LoginPage role="Teacher" />} /> */}
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-        <Route path="/register" element={<RegisterPage />} />
-
-
-        <Route path='*' element={<Navigate to="/" />} />
-        <Route path="/verify-email" element={<VerifyPage />} />
-      </Routes>
-
-      {/* {currentRole === "Admin" &&
-        <>
-          <AdminDashboard />
-        </>
-      }
-
-      {currentRole === "Student" &&
-        <>
-          <StudentDashboard />
-        </>
-      }
-
-      {currentRole === "Teacher" &&
-        <>
-          <TeacherDashboard />
-        </>
-      } */}
-    </Router>
+            <Route element={<PrivateWrapper auth={auth} />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+          </Routes>
+        </div>
+        <Footer />
+      </main>
+    </>
   )
 }
 
-export default App
+export default App;
